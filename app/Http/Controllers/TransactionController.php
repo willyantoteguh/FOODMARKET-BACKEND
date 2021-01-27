@@ -14,7 +14,7 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        $transaction = Transaction::with(['food', 'user'])->paginate(10);
+        $transaction = Transaction::with(['food','user'])->paginate(10);
 
         return view('transactions.index', [
             'transactions' => $transaction
@@ -54,6 +54,12 @@ class TransactionController extends Controller
             'item' => $transaction
         ]);
     }
+
+    // public function show($id)
+    // {
+    //     $item = Transaction::with('food', 'user')->findOrFail($id);
+    //     return view('transactions.detail', compact('item'));
+    // }
 
     /**
      * Show the form for editing the specified resource.

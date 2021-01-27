@@ -16,18 +16,18 @@ class Transaction extends Model
     ];
 
     public function food(){
-        return $this-> hasOne(Food::class, 'id', 'food_id');
+        return $this->hasOne(Food::class, 'id', 'food_id');
     }
 
     public function user(){
-        return $this-> hasOne(User::class, 'id', 'user_id');
+        return $this->hasOne(User::class, 'id', 'user_id');
     }
 
-    public function getCreatedAtAttribute($value){
-        return Carbon::parse($value)->timestamp;
+    public function getCreatedAtAttribute($created_at){
+        return Carbon::parse($created_at)->getPreciseTimestamp(3);
     }
-    public function getUpdatedAtAttribute($value){
-        return Carbon::parse($value)->timestamp;
+    public function getUpdatedAtAttribute($updated_at){
+        return Carbon::parse($updated_at)->getPreciseTimestamp(3);
     }
 
 }
