@@ -27,47 +27,46 @@ class FoodController extends Controller
             $food = Food::find($id);
 
             if($food)
-            {
+            
                 return ResponseFormatter::success(
                     $food,
                     'Data produk berhasil diambil'
                 );
-            }
-            else{
+            else
                 return ResponseFormatter::error(
                     null,
                     'Data produk tidak ada',
                     404
                 );
-            }
+            
         }
 
         $food = Food::query();
 
         if($name)
-        {
+        
             $food->where('name','like','%' . $name . '%');
-        }
+        
         if($types)
-        {
+        
             $food->where('types','like','%' . $types . '%');
-        }
+        
         if($price_from)
-        {
+        
             $food->where('price','>=',$price_from);
-        }
+        
         if($price_to)
-        {
+        
             $food->where('price','<=',$price_to);
-        }
+        
         if($rate_from)
-        {
+        
             $food->where('price','>=',$rate_from);
-        }
+        
         if($rate_to)
-        {
+        
             $food->where('price','<=',$rate_to);
-        }
+        
 
         return ResponseFormatter::success(
             $food->paginate($limit),
